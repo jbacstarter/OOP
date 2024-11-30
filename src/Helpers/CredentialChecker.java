@@ -12,7 +12,7 @@ public class CredentialChecker {
 	}
 	public static boolean checkPassword(String pass) {
 		boolean res = false;
-		if(pass.matches("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d@.#$!%*?&]{8,15}$/")) {
+		if(pass.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,15}$")) {
 			res = true;
 		}
 		

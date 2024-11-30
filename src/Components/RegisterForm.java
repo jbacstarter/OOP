@@ -115,7 +115,7 @@ public class RegisterForm extends JPanel {
 					public void run() {
 						String username = usernameText.getText();
 						String password = String.valueOf(passwordField.getPassword());
-						if(CredentialChecker.checkUsername(username) && CredentialChecker.checkUsername(username)) {
+						if(CredentialChecker.checkUsername(username) && CredentialChecker.checkPassword(password)) {
 							registerAccount();
 							
 						}else if(!CredentialChecker.checkUsername(username)) {
@@ -158,7 +158,7 @@ public class RegisterForm extends JPanel {
 				// Delay
 				try {
 					for(int i = 0; i < 10; i++) {
-						Thread.sleep(1000);
+						Thread.sleep(100);
 						bar.setValue(bar.getValue()+4);
 					}
 				} catch (InterruptedException e) {
