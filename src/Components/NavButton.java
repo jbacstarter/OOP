@@ -10,8 +10,6 @@ import javax.swing.border.MatteBorder;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
@@ -46,7 +44,7 @@ public class NavButton extends JButton {
 		setFocusPainted(false);
 		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setBorderPainted(false);
-		setBorder(new MatteBorder(1, 0, 0, 0, (Color) new Color(0, 0, 0)));
+		setBorder(new MatteBorder(1, 1, 0, 1, (Color) new Color(0, 0, 0)));
 	}
 
 	

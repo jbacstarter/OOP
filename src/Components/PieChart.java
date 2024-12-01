@@ -19,8 +19,7 @@ import org.jfree.util.Rotation;
 import org.json.JSONArray;
 
 import Classes.BankAccount;
-import Classes.Types;
-import Classes.User;
+import Classes.Expense;
 
 
 public class PieChart extends JPanel{
@@ -58,12 +57,12 @@ public class PieChart extends JPanel{
         DefaultPieDataset result = new DefaultPieDataset();
         
         if(type == 'e' && arr != null) {
-           double food = BankAccount.getSum("Food", arr);
-           double apparel = BankAccount.getSum("Apparel", arr);
-           double education = BankAccount.getSum("Education", arr);
-           result.setValue(Types.Food, food);
-           result.setValue(Types.Education, education);
-           result.setValue(Types.Apparel, apparel);
+           double food = BankAccount.getSum(Expense.FOOD, arr);
+           double apparel = BankAccount.getSum(Expense.APPAREL, arr);
+           double education = BankAccount.getSum(Expense.EDUCATION, arr);
+           result.setValue(Expense.FOOD, food);
+           result.setValue(Expense.EDUCATION, education);
+           result.setValue(Expense.APPAREL, apparel);
         }else if(type == 'n' && arr == null) {
         	result.setValue("Window", 245);
         	result.setValue("Linux", 89);

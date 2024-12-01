@@ -44,7 +44,7 @@ public class StatButtons extends JButton {
 		setFocusPainted(false);
 		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setBorderPainted(false);
-		setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		setBorder(new MatteBorder(0, 1, 1, 1, (Color) new Color(0, 0, 0)));
 	}
 
 	

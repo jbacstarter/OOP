@@ -3,7 +3,6 @@ package Components;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
-import javax.swing.border.MatteBorder;
 
 import java.awt.Color;
 import javax.swing.JButton;
@@ -22,10 +21,10 @@ public class StatisticsPage extends JPanel {
 	 * Create the panel.
 	 */
 	public StatisticsPage() {
-		setBackground(Color.LIGHT_GRAY);
+		setBackground(Color.WHITE);
 		setLayout(null);
 		setPreferredSize(new Dimension(450, 625));
-		
+	
 		incomeButton = new StatButtons("Income");
 		incomeButton.setBounds(0, 0, 89, 23);
 		add(incomeButton);
@@ -40,7 +39,7 @@ public class StatisticsPage extends JPanel {
 			}
 		});
 		
-		expensesButton.setBounds(87, 0, 89, 23);
+		expensesButton.setBounds(89, 0, 89, 23);
 		incomeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				expensesButton.setBorderPainted(false);
