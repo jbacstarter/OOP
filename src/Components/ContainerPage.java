@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
+
+import Classes.User;
+import Driver.Window;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,20 +15,18 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
-import javax.swing.border.MatteBorder;
-import java.awt.Cursor;
-import javax.swing.ButtonGroup;
-import javax.swing.DefaultButtonModel;
 
 public class ContainerPage extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel panel;
+	private User user = null;
+	private JPanel NavPanel;
 	private JButton logoutButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
 	private JButton homeButton;
-
+	private StatisticsPage StatPage;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -33,30 +35,60 @@ public class ContainerPage extends JPanel {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
-		panel = new JPanel();
-		panel.setBounds(0, 619, 450, 67);
-		panel.setBackground(Color.WHITE);
-		add(panel);
-		panel.setLayout(new GridLayout(1, 0, 0, 0));
+		NavPanel = new JPanel();
+		NavPanel.setBounds(0, 619, 450, 67);
+		NavPanel.setBackground(Color.WHITE);
+		add(NavPanel);
+		NavPanel.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		homeButton = new NavButton("");
 		homeButton.setIcon(new ImageIcon(ContainerPage.class.getResource("/Resources/home (1).png")));
-		panel.add(homeButton);
+		NavPanel.add(homeButton);
 		
 		btnNewButton_2 = new NavButton("New button");
-		panel.add(btnNewButton_2);
+		btnNewButton_2.setIcon(new ImageIcon(ContainerPage.class.getResource("/Resources/bar-chart.png")));
+		btnNewButton_2.setText("");
+		NavPanel.add(btnNewButton_2);
 		
 		btnNewButton_1 = new NavButton("New button");
-		panel.add(btnNewButton_1);
+		NavPanel.add(btnNewButton_1);
 		
 		logoutButton = new NavButton("");
 		logoutButton.setIcon(new ImageIcon(ContainerPage.class.getResource("/Resources/logout (2).png")));
 		logoutButton.setFont(new Font("Tahoma", Font.PLAIN, 21));
 
-		panel.add(logoutButton);
+		NavPanel.add(logoutButton);
+		
+		StatPage = new StatisticsPage();
+		StatPage.setBounds(0, 0, 450, 620);
+		add(StatPage);
+		
+
 		
 		onClick();
 	}
+
+	
+
+
+
+	public JPanel getNavPanel() {
+		return NavPanel;
+	}
+
+	public void setNavPanel(JPanel navPanel) {
+		NavPanel = navPanel;
+	}
+
+	public StatisticsPage getStatPage() {
+		return StatPage;
+	}
+
+	public void setStatPage(StatisticsPage statPage) {
+		StatPage = statPage;
+	}
+
+
 
 	private void onClick() {
 		homeButton.addActionListener(new ActionListener() {
@@ -93,11 +125,11 @@ public class ContainerPage extends JPanel {
 		});
 	}
 	public JPanel getPanel() {
-		return panel;
+		return NavPanel;
 	}
 
 	public void setPanel(JPanel panel) {
-		this.panel = panel;
+		this.NavPanel = panel;
 	}
 
 	public JButton getLogoutButton() {
@@ -135,4 +167,13 @@ public class ContainerPage extends JPanel {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 }

@@ -13,8 +13,8 @@ import javax.swing.JProgressBar;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import Classes.Data;
 import Helpers.CredentialChecker;
+import Helpers.Data;
 import Helpers.ErrorHandler;
 
 import javax.swing.JFormattedTextField;

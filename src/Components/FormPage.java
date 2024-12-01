@@ -41,6 +41,10 @@ public class FormPage extends JPanel {
 		add(loginForm);
 	}
 
+	public void update() {
+		repaint();
+		revalidate();
+	}
 	public LoginForm getLoginForm() {
 		return loginForm;
 	}

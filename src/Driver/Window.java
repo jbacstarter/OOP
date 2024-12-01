@@ -9,12 +9,12 @@ import javax.swing.JProgressBar;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import Classes.Data;
 import Classes.User;
 import Components.ContainerPage;
 import Components.FormPage;
 import Components.LoginForm;
 import Helpers.CredentialChecker;
+import Helpers.Data;
 import Helpers.ErrorHandler;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -26,7 +26,6 @@ public class Window {
 	private JFrame window;
 	private FormPage formPage = null; 
 	private static ContainerPage containerPage = null;
-	private static User user = null; 
 	/**
 	 * Launch the application.
 	 */
@@ -37,6 +36,7 @@ public class Window {
 					Window window = new Window();
 					window.window.setVisible(true);
 				} catch (Exception e) {
+					e.printStackTrace();
 					new ErrorHandler("window is not working", null);
 				}
 			}
@@ -72,11 +72,11 @@ public class Window {
 					@Override
 					public void run() {
 						bar.setStringPainted(true);
+						bar.setValue(0);
 						bar.setForeground(Color.GREEN);
 						bar.setBounds(formPage.getWidth()/6, formPage.getHeight()/2, 300,30);
 						formPage.add(bar);
-						formPage.repaint();
-						formPage.revalidate();
+						formPage.update();
 							try {
 								while(bar.getValue() < 100) {
 									Thread.sleep(100);
@@ -88,8 +88,7 @@ public class Window {
 							}
 							
 							formPage.remove(bar);
-							formPage.repaint();
-							formPage.revalidate();
+							formPage.update();
 							loginHandler();
 					}
 				});
@@ -104,12 +103,10 @@ public class Window {
 
 				if(CredentialChecker.checkUsername(username) && CredentialChecker.checkUsername(username) && isLogin) {
 	                window.getContentPane().remove(formPage);
-	                window.getContentPane().repaint();
-	                window.getContentPane().revalidate();
+	                update();
 	                bar.setValue(0);
 	                window.getContentPane().add(bar);
-	                window.getContentPane().repaint();
-	                window.getContentPane().revalidate();
+	                update();
 					try {	
 						while(bar.getValue() < 100) {
 							Thread.sleep(100);
@@ -120,11 +117,11 @@ public class Window {
 						
 					}
 	                window.getContentPane().remove(bar);
-	                window.getContentPane().repaint();
-	                window.getContentPane().revalidate();
+	                update();
+	                containerPage.setUser(new User(username, password));
+	                containerPage.getStatPage().getExpensesChart().updateChart('e', containerPage.getUser().getAccount().getExpenses());
 	                window.getContentPane().add(containerPage);
-	                window.getContentPane().repaint();
-	                window.getContentPane().revalidate();
+	                update();
 				}else if(!CredentialChecker.checkUsername(username)) {
 					new ErrorHandler("\nUsername must have:\na length of 4-25 characters;\nno whitespaces;", formPage);
 				}else if(!CredentialChecker.checkPassword(password)){
@@ -133,6 +130,7 @@ public class Window {
 					new ErrorHandler("Account not found.", formPage);
 				}
 			}
+			
 			private boolean checkAccount() {
 				boolean isLogin = false;
 				LoginForm lForm = formPage.getLoginForm();
@@ -155,6 +153,10 @@ public class Window {
 		window.getContentPane().add(formPage);
 	}
 
+	public void update() {
+        window.getContentPane().repaint();
+        window.getContentPane().revalidate();
+	}
 	public JFrame getFrame() {
 		return window;
 	}
@@ -179,12 +181,5 @@ public class Window {
 		this.formPage = formPage;
 	}
 
-	public static User getUser() {
-		return user;
-	}
-
-	public static void setUser(User user) {
-		Window.user = user;
-	}
 
 }

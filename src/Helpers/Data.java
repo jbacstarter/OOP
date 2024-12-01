@@ -1,4 +1,4 @@
-package Classes;
+package Helpers;
 
 import java.awt.Container;
 import java.io.File;
@@ -8,8 +8,6 @@ import java.io.IOException;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
-
-import Helpers.ErrorHandler;
 
 public class Data {
 

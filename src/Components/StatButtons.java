@@ -10,28 +10,26 @@ import javax.swing.border.MatteBorder;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 
-public class NavButton extends JButton {
+public class StatButtons extends JButton {
 
 	private static final long serialVersionUID = 1L;
-	private String color1 = "#99ffce";
-	private String color2 = "#cbb8ff";
+	private String color1 = "#FFEAC5";
+	private String color2 = "#FFF8E8";
 	/**
 	 * Create the panel.
 	 */
-	public NavButton(String name) {
+	public StatButtons(String name) {
 		super(name);
 
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseExited(MouseEvent e) {
-				color1 = "#99ffce";
-				color2 = "#cbb8ff";
+				color1 = "#FFEAC5";
+				color2 = "#FFF8E8";
 			}
 		});
 		addMouseMotionListener(new MouseMotionAdapter() {
@@ -46,7 +44,7 @@ public class NavButton extends JButton {
 		setFocusPainted(false);
 		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setBorderPainted(false);
-		setBorder(new MatteBorder(1, 0, 0, 0, (Color) new Color(0, 0, 0)));
+		setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
 	}
 
 	
@@ -55,7 +53,7 @@ public class NavButton extends JButton {
 	int w = getWidth(), h = getHeight();
 	Graphics2D g2 = (Graphics2D) g;
 	g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-	GradientPaint gra = new GradientPaint(0, 0, Color.decode(color1), 0, (h/2)+20, Color.decode(color2));
+	GradientPaint gra = new GradientPaint(0, 0, Color.decode(color1), 0, (h/2)+50, Color.decode(color2));
 	g2.setPaint(gra);
 	g2.fillRect(0, 0, w, h);
 	super.paintComponent(g);

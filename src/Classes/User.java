@@ -7,7 +7,10 @@ public class User {
 	public User(String user, String pass) {
 		username = user;
 		password = pass;
-		account = new BankAccount(username, password);
+		if(user != null && pass != null) {
+			account = new BankAccount(username, password);
+			
+		}
 	}
 
 	public String getUsername() {
