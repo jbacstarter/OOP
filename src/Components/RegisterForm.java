@@ -25,8 +25,10 @@ import java.awt.event.MouseMotionAdapter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
+
 import javax.swing.JButton;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -113,25 +115,87 @@ public class RegisterForm extends JPanel {
 					
 					@Override
 					public void run() {
+						
 						String username = usernameText.getText();
 						String password = String.valueOf(passwordField.getPassword());
-						if(CredentialChecker.checkUsername(username) && CredentialChecker.checkPassword(password)) {
+						if(CredentialChecker.checkUsername(username) && CredentialChecker.checkPassword(password) && !checkDuplicate()) {
 							registerAccount();
-							
+							createBankAccount();
 						}else if(!CredentialChecker.checkUsername(username)) {
 							new ErrorHandler("\nUsername must have:\na length of 4-25 characters;\nno whitespaces;", getParent());
 						}else if(!CredentialChecker.checkPassword(password)){
 							new ErrorHandler("\nPassword must contain:\nat least one lowercase letter;\nat least one uppercase letter;\nat least one digit;\nat least 8 characters long;", getParent());
+						}else if(checkDuplicate()) {
+							new ErrorHandler("user already exists", getParent());
 						}else {
 							new ErrorHandler("Please enter valid credentials", getParent());
 						}
 					}
 				});
 			}
-
+			private boolean checkDuplicate() {
+				boolean status = false;
+				String user = usernameText.getText();
+				File file = new File("src/Data/bankaccounts.json");
+				JSONArray arr = Data.getData(file, getParent());
+				for(int i = 0; i < arr.length(); i++) {
+					String fileUser = arr.getJSONObject(i).getString("username");
+					if(fileUser.contains(user)) {
+						status = true;
+					}
+				}
+				return status;
+			}
+			private void createBankAccount() {
+				File file = new File("src/Data/bankaccounts.json");
+				JProgressBar bar = new JProgressBar(0, 100); 
+				bar.setStringPainted(true);
+				bar.setValue(0);
+				bar.setBounds(getWidth()/6, getHeight()/2, 300,30);
+				bar.setForeground(Color.GREEN);
+				add(bar);
+				repaint();
+				revalidate();
+				String user = usernameText.getText();
+				String pass = String.valueOf(passwordField.getPassword());
+				JSONArray arr = Data.getData(file, getParent());
+				bar.setValue(45);
+				// Delay
+				try {
+					for(int i = 0; i < 10; i++) {
+						Thread.sleep(100);
+						bar.setValue(bar.getValue()+ new Random().nextInt(2, 5));
+					}
+				} catch (InterruptedException e) {
+					new ErrorHandler("error in thread;\n" + e.getStackTrace(), getParent());
+				}
+				JSONObject obj = new JSONObject();
+				obj.put("password", pass);
+				obj.put("username", user);
+				obj.put("expenses", new JSONArray());
+				obj.put("income", new JSONArray());
+				
+				arr.put(obj);
+				
+				FileWriter write;
+				try {
+					write = new FileWriter(file);
+					arr.write(write);
+					bar.setValue(90);
+					write.flush();
+					write.close();
+				} catch (IOException e) {
+					new ErrorHandler("error found in writing username and password", getParent());
+				}
+				remove(bar);
+				repaint();
+				revalidate();
+			}
+			
 			private void registerAccount() {
 				JProgressBar bar = new JProgressBar(0, 100); 
 				bar.setStringPainted(true);
+				bar.setValue(0);
 				bar.setBounds(getWidth()/6, getHeight()/2, 300,30);
 				bar.setForeground(Color.GREEN);
 				add(bar);
@@ -169,6 +233,7 @@ public class RegisterForm extends JPanel {
 				obj.put("username", user);
 				
 				arr.put(obj);
+				
 				FileWriter write;
 				try {
 					write = new FileWriter(file);

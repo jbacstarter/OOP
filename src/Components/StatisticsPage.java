@@ -14,8 +14,7 @@ public class StatisticsPage extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JButton incomeButton;
 	private JButton expensesButton;
-	private JPanel expensesContainer;
-	private PieChart expensesChart;
+	private ExpensesForm expensesForm;
 
 	/**
 	 * Create the panel.
@@ -47,35 +46,24 @@ public class StatisticsPage extends JPanel {
 			}
 		});
 		
-		expensesContainer = new JPanel();
-		expensesContainer.setBackground(Color.WHITE);
-		expensesContainer.setBounds(0, 21, 450, 602);
-		add(expensesContainer);
-		expensesContainer.setLayout(null);
+		expensesForm = new ExpensesForm();
+		expensesForm.setBackground(Color.WHITE);
+		expensesForm.setBounds(0, 21, 450, 602);
+		add(expensesForm);
+		expensesForm.setLayout(null);
 		
-		
-		expensesChart = new PieChart("Expenses", 'e', null);
-		expensesChart.getChartPanel().setBackground(Color.WHITE);
-		expensesChart.setBackground(Color.WHITE);
-		expensesChart.setBounds(0, 0, 450, 274);
-		expensesContainer.add(expensesChart);
+
 	}
 
-	public JPanel getExpensesContainer() {
-		return expensesContainer;
+	public ExpensesForm getExpensesForm() {
+		return expensesForm;
 	}
 
-	public void setExpensesContainer(JPanel expensesContainer) {
-		this.expensesContainer = expensesContainer;
+	public void setExpensesForm(ExpensesForm expensesForm) {
+		this.expensesForm = expensesForm;
 	}
 
-	public PieChart getExpensesChart() {
-		return expensesChart;
-	}
 
-	public void setExpensesChart(PieChart expensesChart) {
-		this.expensesChart = expensesChart;
-	}
 
 	public JButton getIncomeButton() {
 		return incomeButton;

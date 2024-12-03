@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 
 import Classes.User;
-import Driver.Window;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;

@@ -22,18 +22,18 @@ import Classes.BankAccount;
 import Classes.Expense;
 
 
-public class PieChart extends JPanel{
+public class ExpenseChart extends JPanel{
 
     private static final long serialVersionUID = 1L;
     private PieDataset dataset = null;
     private JFreeChart chart= null;
     private ChartPanel chartPanel = null;
     
-    public PieChart(String chartTitle, char type, JSONArray arr) {
-    	if(arr != null) {
-    		dataset = createDataset(type, arr);
+    public ExpenseChart(String chartTitle,JSONArray arr) {
+    	if(arr != null && arr.length() > 0) {
+    		dataset = createDataset( arr);
     	}else {
-    		dataset= createDataset(type, null);
+    		dataset= createDataset( null);
     	}
         chart = createChart(dataset, chartTitle);
         chartPanel = new ChartPanel(chart);
@@ -42,9 +42,9 @@ public class PieChart extends JPanel{
         add(chartPanel);
     }
     
-    public void updateChart(char type, JSONArray arr) {
-        if (arr != null) {
-            this.dataset = createDataset(type, arr);
+    public void updateChart(JSONArray arr) {
+        if (arr != null && arr.length() > 0) {
+            this.dataset = createDataset(arr);
             this.chart = createChart(dataset, this.chart.getTitle().getText());
             this.chartPanel.setChart(this.chart);
             this.chartPanel.repaint();
@@ -53,17 +53,17 @@ public class PieChart extends JPanel{
     /**
      * Creates a sample dataset 
      */
-    private  PieDataset createDataset(char type, JSONArray arr) {
+    private  PieDataset createDataset(JSONArray arr) {
         DefaultPieDataset result = new DefaultPieDataset();
-        
-        if(type == 'e' && arr != null) {
+        System.out.println(arr);
+        if(arr != null) {
            double food = BankAccount.getSum(Expense.FOOD, arr);
            double apparel = BankAccount.getSum(Expense.APPAREL, arr);
            double education = BankAccount.getSum(Expense.EDUCATION, arr);
            result.setValue(Expense.FOOD, food);
            result.setValue(Expense.EDUCATION, education);
            result.setValue(Expense.APPAREL, apparel);
-        }else if(type == 'n' && arr == null) {
+        }else if((arr == null|| arr.length()== 0)) {
         	result.setValue("Window", 245);
         	result.setValue("Linux", 89);
         	result.setValue("Samsung", 482);
@@ -81,7 +81,7 @@ public class PieChart extends JPanel{
         JFreeChart chart = ChartFactory.createPieChart3D(
             title,                  // chart title
             dataset,                // data
-            true,                   // include legend
+            true,                     // include legend
             true,
             false
         );

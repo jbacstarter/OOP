@@ -119,7 +119,7 @@ public class Window {
 	                window.getContentPane().remove(bar);
 	                update();
 	                containerPage.setUser(new User(username, password));
-	                containerPage.getStatPage().getExpensesChart().updateChart('e', containerPage.getUser().getAccount().getExpenses());
+	                containerPage.getStatPage().getExpensesForm().getExpensesChart().updateChart(containerPage.getUser().getAccount().getExpenses());
 	                window.getContentPane().add(containerPage);
 	                update();
 				}else if(!CredentialChecker.checkUsername(username)) {
