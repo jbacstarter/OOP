@@ -2,7 +2,7 @@ CHANGELOG
 
 [X] Objectives ; [O] Fixed
 
-[X] Add functionality for Navigator buttons
+[X] Add functionality for Navigator buttons\n
 [X] Add functionality for statistics page buttons
 [X] Add lists for expenses
 [X]	Add lists for income
