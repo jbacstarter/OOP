@@ -1,15 +1,18 @@
 package Classes;
 
+import Components.PieChart;
+
 public class User {
 
 	private String username = "NULL", password = "NULL";
 	private BankAccount account;
+	PieChart userChart;
 	public User(String user, String pass) {
 		username = user;
 		password = pass;
 		if(user != null && pass != null) {
 			account = new BankAccount(username, password);
-			
+			userChart = new PieChart("Expenses", account.getExpenses());
 		}
 	}
 

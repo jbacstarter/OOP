@@ -1,7 +1,6 @@
 package Classes;
 
 import java.io.File;
-import java.util.Iterator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -10,7 +9,7 @@ import Helpers.Data;
 
 public class BankAccount {
 
-	private JSONArray expenses = null, income = null;
+	private JSONArray expenses = null;
 	private File file = new File("src/Data/bankaccounts.json");
 	
 	public BankAccount(String user, String pass) {
@@ -29,7 +28,6 @@ public class BankAccount {
         		   String pass = obj.getString("password");
         		   if(name.contains(username) && pass.contains(password)) {
         			   expenses = new JSONArray(obj.getJSONArray("expenses"));
-        			   income = new JSONArray(obj.getJSONArray("income"));
         		   }else {
         			   System.out.println("ACCOUNT NOT FOUND!");
         		   }
@@ -66,17 +64,4 @@ public class BankAccount {
 		this.expenses = expenses;
 	}
 
-
-
-
-	public JSONArray getIncome() {
-		return income;
-	}
-
-
-
-
-	public void setIncome(JSONArray newIncome) {
-		this.income = newIncome;
-	}
 }

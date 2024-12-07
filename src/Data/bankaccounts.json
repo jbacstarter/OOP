@@ -1,1 +1,37 @@
-[{"income":[523,62,31,45],"password":"John1234","username":"john","expenses":[{"type":"Food","value":232},{"type":"Education","value":244},{"type":"Apparel","value":677},{"type":"Food","value":329}]},{"income":[523,62,31,45],"password":"Penguin2004","username":"kinlato","expenses":[{"type":"Food","value":9238},{"type":"Education","value":24435},{"type":"Apparel","value":6345},{"type":"Food","value":3293}]},{"income":[],"password":"John1234","username":"baby","expenses":[]}]
+[ {
+  "password" : "John1234",
+  "username" : "john",
+  "expenses" : [ {
+    "type" : "Food",
+    "value" : 232
+  }, {
+    "type" : "Education",
+    "value" : 244
+  }, {
+    "type" : "Apparel",
+    "value" : 677
+  }, {
+    "type" : "Food",
+    "value" : 329
+  } ]
+}, {
+  "password" : "Penguin2004",
+  "username" : "kinlato",
+  "expenses" : [ {
+    "type" : "Food",
+    "value" : 9238
+  }, {
+    "type" : "Education",
+    "value" : 24435
+  }, {
+    "type" : "Apparel",
+    "value" : 6345
+  }, {
+    "type" : "Food",
+    "value" : 3293
+  } ]
+}, {
+  "password" : "John1234",
+  "username" : "baby",
+  "expenses" : [ ]
+} ]

@@ -1,3 +1,4 @@
+
 package Components;
 
 import java.awt.Color;
@@ -22,20 +23,21 @@ import Classes.BankAccount;
 import Classes.Expense;
 
 
-public class ExpenseChart extends JPanel{
+public class PieChart extends JPanel{
 
     private static final long serialVersionUID = 1L;
     private PieDataset dataset = null;
     private JFreeChart chart= null;
     private ChartPanel chartPanel = null;
     
-    public ExpenseChart(String chartTitle,JSONArray arr) {
+    public PieChart(String chartTitle,JSONArray arr) {
     	if(arr != null && arr.length() > 0) {
     		dataset = createDataset( arr);
+    		chart = createChart(dataset, chartTitle);
     	}else {
     		dataset= createDataset( null);
+    		chart = createChart(dataset, "Default Chart");
     	}
-        chart = createChart(dataset, chartTitle);
         chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new java.awt.Dimension(450, 270));
         
@@ -55,14 +57,11 @@ public class ExpenseChart extends JPanel{
      */
     private  PieDataset createDataset(JSONArray arr) {
         DefaultPieDataset result = new DefaultPieDataset();
-        System.out.println(arr);
         if(arr != null) {
-           double food = BankAccount.getSum(Expense.FOOD, arr);
-           double apparel = BankAccount.getSum(Expense.APPAREL, arr);
-           double education = BankAccount.getSum(Expense.EDUCATION, arr);
-           result.setValue(Expense.FOOD, food);
-           result.setValue(Expense.EDUCATION, education);
-           result.setValue(Expense.APPAREL, apparel);
+        	for(int col = 0;col <Expense.length; col++) {
+        		double value = BankAccount.getSum(Expense.TYPES[col], arr);
+        		result.setValue(Expense.TYPES[col], value);
+        	}
         }else if((arr == null|| arr.length()== 0)) {
         	result.setValue("Window", 245);
         	result.setValue("Linux", 89);

@@ -17,8 +17,8 @@ import java.awt.event.MouseAdapter;
 public class NavButton extends JButton {
 
 	private static final long serialVersionUID = 1L;
-	private String color1 = "#99ffce";
-	private String color2 = "#cbb8ff";
+	private String color1 = "#ffffff";
+	private String color2 = "#ffffff";
 	/**
 	 * Create the panel.
 	 */
@@ -28,15 +28,15 @@ public class NavButton extends JButton {
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseExited(MouseEvent e) {
-				color1 = "#99ffce";
-				color2 = "#cbb8ff";
+				color1 = "#ffffff";
+				color2 = "#ffffff";
 			}
 		});
 		addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				color1 = "#ffadd2";
-				color2 = "#9ea0ff";
+				color1 = "#92acdf";
+				color2 = "#92acdf";
 			}
 		});
 		setContentAreaFilled(false);

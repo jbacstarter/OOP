@@ -10,7 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Classes.User;
-import Components.ContainerPage;
+import Components.UserPage;
 import Components.FormPage;
 import Components.LoginForm;
 import Helpers.CredentialChecker;
@@ -25,7 +25,7 @@ public class Window {
 
 	private JFrame window;
 	private FormPage formPage = null; 
-	private static ContainerPage containerPage = null;
+	private UserPage containerPage = null;
 	/**
 	 * Launch the application.
 	 */
@@ -35,6 +35,7 @@ public class Window {
 				try {
 					Window window = new Window();
 					window.window.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 					new ErrorHandler("window is not working", null);
@@ -63,7 +64,7 @@ public class Window {
 		window.setLocationRelativeTo(null);
 		window.getContentPane().setLayout(null);
 		formPage = new FormPage();
-		containerPage = new ContainerPage();
+		containerPage = new UserPage();
 		formPage.getLoginForm().getLoginButton().addActionListener(new ActionListener() {
 			private JProgressBar bar = new JProgressBar(0,100);
 			public void actionPerformed(ActionEvent e) {
@@ -119,7 +120,6 @@ public class Window {
 	                window.getContentPane().remove(bar);
 	                update();
 	                containerPage.setUser(new User(username, password));
-	                containerPage.getStatPage().getExpensesForm().getExpensesChart().updateChart(containerPage.getUser().getAccount().getExpenses());
 	                window.getContentPane().add(containerPage);
 	                update();
 				}else if(!CredentialChecker.checkUsername(username)) {
