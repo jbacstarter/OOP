@@ -122,4 +122,64 @@ public class TransactionsPage extends JPanel {
 			}
 		}
 	}
+
+	public JPanel getDesign1() {
+		return design1;
+	}
+
+	public void setDesign1(JPanel design1) {
+		this.design1 = design1;
+	}
+
+	public JLabel getTransactionsLabel() {
+		return transactionsLabel;
+	}
+
+	public void setTransactionsLabel(JLabel transactionsLabel) {
+		this.transactionsLabel = transactionsLabel;
+	}
+
+	public JScrollPane getScrollPanel() {
+		return scrollPanel;
+	}
+
+	public void setScrollPanel(JScrollPane scrollPanel) {
+		this.scrollPanel = scrollPanel;
+	}
+
+	public JPanel getListsPanel() {
+		return listsPanel;
+	}
+
+	public void setListsPanel(JPanel listsPanel) {
+		this.listsPanel = listsPanel;
+	}
+
+	public JButton getAddButton() {
+		return addButton;
+	}
+
+	public void setAddButton(JButton addButton) {
+		this.addButton = addButton;
+	}
+
+	public JButton getRemoveButton() {
+		return removeButton;
+	}
+
+	public void setRemoveButton(JButton removeButton) {
+		this.removeButton = removeButton;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

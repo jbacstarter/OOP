@@ -131,4 +131,52 @@ public class UserPage extends JPanel {
 		this.user = user;
 	}
 
+
+
+
+
+	public JPanel getContainer() {
+		return container;
+	}
+
+
+
+
+
+	public void setContainer(JPanel container) {
+		this.container = container;
+	}
+
+
+
+
+
+	public HomePage getHomePage() {
+		return homePage;
+	}
+
+
+
+
+
+	public void setHomePage(HomePage homePage) {
+		this.homePage = homePage;
+	}
+
+
+
+
+
+	public JPanel getTransacPage() {
+		return transacPage;
+	}
+
+
+
+
+
+	public void setTransacPage(JPanel transacPage) {
+		this.transacPage = transacPage;
+	}
+
 }

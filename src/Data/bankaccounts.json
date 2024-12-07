@@ -1,1 +1,34 @@
-[{"password":"Penguin2004","username":"kinlato","expenses":[{"type":"Food/Groceries","value":9238},{"date":"2/3/2023","type":"Education","value":24435},{"date":"2/3/2023","type":"Apparel","value":6345},{"date":"2/3/2023","type":"Food/Groceries","value":3293}]},{"password":"John1234","username":"baby","budget":20000,"expenses":[]},{"password":"John1234","username":"john","budget":10000,"expenses":[{"date":"2/3/2023","type":"Food/Groceries","value":329},{"date":"2/3/2023","type":"Food/Groceries","value":3252.23}]}]
+[ {
+  "password" : "Penguin2004",
+  "username" : "kinlato",
+  "expenses" : [ {
+    "type" : "Food/Groceries",
+    "value" : 9238
+  }, {
+    "date" : "2/3/2023",
+    "type" : "Education",
+    "value" : 24435
+  }, {
+    "date" : "2/3/2023",
+    "type" : "Apparel",
+    "value" : 6345
+  }, {
+    "date" : "2/3/2023",
+    "type" : "Food/Groceries",
+    "value" : 3293
+  } ]
+}, {
+  "password" : "John1234",
+  "username" : "baby",
+  "budget" : 20000,
+  "expenses" : [ ]
+}, {
+  "password" : "John1234",
+  "username" : "john",
+  "budget" : 10000,
+  "expenses" : [ {
+    "date" : "2/3/2023",
+    "type" : "Food/Groceries",
+    "value" : 329
+  } ]
+} ]
