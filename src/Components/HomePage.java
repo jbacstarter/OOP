@@ -42,7 +42,6 @@ public class HomePage extends JPanel {
 		transactionButton.setIconTextGap(20);
 		transactionButton.setIcon(new ImageIcon(HomePage.class.getResource("/Resources/transaction.gif")));
 		transactionButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		transactionButton.setBorderPainted(false);
 		transactionButton.setFocusPainted(false);
 		transactionButton.setFont(new Font("Dialog", Font.BOLD, 21));
 		transactionButton.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
@@ -54,7 +53,6 @@ public class HomePage extends JPanel {
 		budgetButton.setIcon(new ImageIcon(HomePage.class.getResource("/Resources/budg.gif")));
 		budgetButton.setIconTextGap(20);
 		budgetButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		budgetButton.setBorderPainted(false);
 		budgetButton.setFocusPainted(false);
 		budgetButton.setFont(new Font("Dialog", Font.BOLD, 21));
 		budgetButton.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
@@ -65,7 +63,6 @@ public class HomePage extends JPanel {
 		statButton = new JButton("Statistics");
 		statButton.setIcon(new ImageIcon(HomePage.class.getResource("/Resources/test.gif")));
 		statButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		statButton.setBorderPainted(false);
 		statButton.setFocusPainted(false);
 		statButton.setFont(new Font("Dialog", Font.BOLD, 21));
 		statButton.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));

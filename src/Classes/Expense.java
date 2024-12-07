@@ -1,7 +1,7 @@
 package Classes;
 
 public class Expense {
-	public static String GROCERIESORFOOD = "Food";
+	public static String GROCERIESORFOOD = "Food/Groceries";
 	public static String APPAREL = "Apparel";
 	public static String EDUCATION = "Education";
 	public static String HOUSINGORRENT = "Housing/Rent";

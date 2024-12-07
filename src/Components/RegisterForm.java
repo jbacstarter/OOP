@@ -173,7 +173,7 @@ public class RegisterForm extends JPanel {
 				obj.put("password", pass);
 				obj.put("username", user);
 				obj.put("expenses", new JSONArray());
-				obj.put("income", new JSONArray());
+				obj.put("budget", 0);
 				
 				arr.put(obj);
 				

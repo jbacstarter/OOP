@@ -23,7 +23,8 @@ public class UserPage extends JPanel {
 	private JButton logoutButton;
 	private JButton homeButton;
 	private JPanel container;
-	private JPanel homePage;
+	private HomePage homePage;
+	private JPanel transacPage;
 	
 	/**
 	 * Create the panel.
@@ -55,9 +56,13 @@ public class UserPage extends JPanel {
 		add(container);
 		container.setLayout(null);
 		
+		transacPage = new TransactionsPage(user);
+		transacPage.setBounds(0, 0, 450, 619);
+		container.add(transacPage);
+		
 		homePage = new HomePage();
 		homePage.setBounds(0, 0, 450, 619);
-		container.add(homePage);
+		//container.add();
 		onClick();
 	}
 

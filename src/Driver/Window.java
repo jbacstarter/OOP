@@ -150,7 +150,7 @@ public class Window {
 		});
 		containerPage.setBounds(0, 0,450,containerPage.getToolkit().getScreenSize().height);
 		formPage.setBounds(0, 0, 436, 683);
-		window.getContentPane().add(formPage);
+		window.getContentPane().add(containerPage);
 	}
 
 	public void update() {
