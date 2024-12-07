@@ -7,7 +7,6 @@ import Helpers.Draw;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -15,8 +14,9 @@ import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import java.awt.Cursor;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class HomePage extends JPanel {
 
@@ -26,9 +26,11 @@ public class HomePage extends JPanel {
 	private JButton budgetButton;
 	private JButton statButton;
 	private JLabel appName;
-
+	private UserPage userPage;
 	
-	public HomePage() {
+	public HomePage(UserPage userPage) {
+		this.userPage = userPage;
+		JPanel container = userPage.getContainer();
 		setBackground(Color.decode("#52b3e1"));
 		setLayout(null);
 		
@@ -39,6 +41,15 @@ public class HomePage extends JPanel {
 		add(welcome);
 		
 		transactionButton = new JButton("Transactions");
+		transactionButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				container.removeAll();
+				container.add(userPage.getTransacPage());
+				userPage.getTransacPage().showLists();
+				container.repaint();
+				container.revalidate();
+			}
+		});
 		transactionButton.setIconTextGap(20);
 		transactionButton.setIcon(new ImageIcon(HomePage.class.getResource("/Resources/transaction.gif")));
 		transactionButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -61,6 +72,15 @@ public class HomePage extends JPanel {
 		add(budgetButton);
 		
 		statButton = new JButton("Statistics");
+		statButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				container.removeAll();
+				container.add(userPage.getStatPage());
+				userPage.getStatPage().showList();
+				container.repaint();
+				container.revalidate();
+			}
+		});
 		statButton.setIcon(new ImageIcon(HomePage.class.getResource("/Resources/test.gif")));
 		statButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		statButton.setFocusPainted(false);

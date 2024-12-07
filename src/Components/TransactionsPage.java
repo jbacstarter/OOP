@@ -7,6 +7,7 @@ import javax.swing.ScrollPaneConstants;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import Classes.Expense;
 import Classes.User;
 import Helpers.Data;
 
@@ -14,12 +15,12 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.ImageIcon;
 import java.awt.Cursor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 public class TransactionsPage extends JPanel {
 
@@ -97,17 +98,14 @@ public class TransactionsPage extends JPanel {
 		removeButton.setBackground(Color.WHITE);
 		removeButton.setBounds(377, 127, 52, 23);
 		add(removeButton);
-		showLists();
 		
 
 	}
 	
 	public void showLists() {
 		listsPanel.removeAll();
-		listsPanel.repaint();
-		listsPanel.revalidate();
 		JSONArray expenses = user.getAccount().getExpenses();
-		if(expenses.length() > 0 || expenses != null) {
+		if(expenses != null && expenses.length() >0) {
 			
 			for(int i = 0; i < expenses.length(); i++) {
 			TransactionCard card = new TransactionCard();
@@ -116,6 +114,17 @@ public class TransactionsPage extends JPanel {
 				card.getDateLabel().setText(obj.getString("date"));
 				card.getType().setText(obj.getString("type"));
 				card.getPaymentValue().setText("₱ " + String.valueOf(obj.getDouble("value")));
+				listsPanel.add(card);
+				listsPanel.repaint();
+				listsPanel.revalidate();
+			}
+		}else {
+			for(int i = 0; i < 1; i++) {
+			TransactionCard card = new TransactionCard();
+				card.index = i;
+				card.getDateLabel().setText("No transactions yet");
+				card.getType().setText(Expense.TYPES[new Random().nextInt(0, Expense.length)]);
+				card.getPaymentValue().setText("₱ " + new Random().nextInt(1000, 10000));
 				listsPanel.add(card);
 				listsPanel.repaint();
 				listsPanel.revalidate();

@@ -18,7 +18,7 @@ import java.awt.Font;
 public class UserPage extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private User user = new User("john", "John1234");
+	private User user = null; //new User("john", "John1234");
 	private JPanel NavPanel;
 	private JButton logoutButton;
 	private JButton homeButton;
@@ -31,9 +31,17 @@ public class UserPage extends JPanel {
 	 * Create the panel.
 	 */
 	public UserPage() {
+	}
+
+	
+
+
+
+	public void initialize() {
 		setPreferredSize(new Dimension(450, 686));
 		setBackground(Color.WHITE);
 		setLayout(null);
+		setBounds(0, 0,450,getToolkit().getScreenSize().height);
 		
 		NavPanel = new JPanel();
 		NavPanel.setBounds(0, 619, 450, 67);
@@ -56,21 +64,33 @@ public class UserPage extends JPanel {
 		container.setBounds(0, 0, 450, 619);
 		add(container);
 		container.setLayout(null);
-		
-		statPage = new StatisticsPage(user);
-		statPage.setBounds(0, 0, 450, 619);
-		
-		transacPage = new TransactionsPage(user);
-		transacPage.setBounds(0, 0, 450, 619);
-		
-		homePage = new HomePage();
-		homePage.setBounds(0, 0, 450, 619);
-		container.add(statPage);
-		
-		onClick();
+		if(user != null) {
+			
+			statPage = new StatisticsPage(user);
+			statPage.setBounds(0, 0, 450, 619);
+			
+			transacPage = new TransactionsPage(user);
+			transacPage.setBounds(0, 0, 450, 619);
+			
+			homePage = new HomePage(this);
+			homePage.setBounds(0, 0, 450, 619);
+			container.add(homePage);
+			
+			homeButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					container.removeAll();
+					container.add(homePage);
+					container.repaint();
+					container.revalidate();
+				}
+			});
+			onClick();
+		}
 	}
 
-	
+
 
 
 

@@ -11,6 +11,8 @@ import Classes.Expense;
 import Classes.User;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.Random;
+
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
@@ -70,32 +72,54 @@ public class StatisticsPage extends JPanel {
 		listPanel.setLayout(new WrapLayout(WrapLayout.LEFT, 0,0));
 		listScrollPane.setViewportView(listPanel);
 		
-		showList();
 	}
 
 	public void showList() {
 		listPanel.removeAll();
 		JSONArray exp = user.getAccount().getExpenses();
-		int total = (int)BankAccount.getTotal(exp);
-		System.out.println(total);
-		for(int i = 0 ; i< Expense.length; i++) {
-			StatisticsCard card = new StatisticsCard();
-			 card.getLoadBar().setMaximum(total);
-			 card.getLoadBar().setValue((int)BankAccount.getSum(Expense.TYPES[i], exp));
-			 int percent = Integer.parseInt(card.getLoadBar().getString().split("%")[0]);
-			 if(percent <40) {
-				 card.getLoadBar().setForeground(Color.GREEN);
-			 }else if(percent < 85) {
-				 card.getLoadBar().setForeground(Color.YELLOW);
-			 }else{
-				 card.getLoadBar().setForeground(Color.RED);
-			 }
-			 card.getTypeLabel().setText(Expense.TYPES[i]);
-			listPanel.add(card);
-			listPanel.repaint();
-			listPanel.revalidate();
+		if(exp!=null && exp.length()>0 ) {
+			
+			int total = (int)BankAccount.getTotal(exp);
+			for(int i = 0 ; i< Expense.length; i++) {
+				StatisticsCard card = new StatisticsCard();
+				card.getLoadBar().setMaximum(total);
+				card.getLoadBar().setValue((int)BankAccount.getSum(Expense.TYPES[i], exp));
+				int percent = Integer.parseInt(card.getLoadBar().getString().split("%")[0]);
+				if(percent <40) {
+					card.getLoadBar().setForeground(Color.GREEN);
+				}else if(percent < 85) {
+					card.getLoadBar().setForeground(Color.YELLOW);
+				}else{
+					card.getLoadBar().setForeground(Color.RED);
+				}
+				card.getTypeLabel().setText(Expense.TYPES[i]);
+				listPanel.add(card);
+				listPanel.repaint();
+				listPanel.revalidate();
+			}
+		}else {
+			Random rand= new Random();
+			for(int i = 0 ; i< Expense.length; i++) {
+				StatisticsCard card = new StatisticsCard();
+				card.getLoadBar().setMaximum(1000);
+				card.getLoadBar().setValue(rand.nextInt(10, 1001));
+				int percent = Integer.parseInt(card.getLoadBar().getString().split("%")[0]);
+				if(percent <40) {
+					card.getLoadBar().setForeground(Color.GREEN);
+				}else if(percent < 85) {
+					card.getLoadBar().setForeground(Color.YELLOW);
+				}else{
+					card.getLoadBar().setForeground(Color.RED);
+				}
+				card.getTypeLabel().setText(Expense.TYPES[i]);
+				listPanel.add(card);
+				listPanel.repaint();
+				listPanel.revalidate();
+			}
 		}
 	}
+		
+	
 	public JPanel getPiePanel() {
 		return PiePanel;
 	}

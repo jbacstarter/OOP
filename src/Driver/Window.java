@@ -119,7 +119,9 @@ public class Window {
 					}
 	                window.getContentPane().remove(bar);
 	                update();
+	                containerPage = new UserPage();
 	                containerPage.setUser(new User(username, password));
+	                containerPage.initialize();
 	                window.getContentPane().add(containerPage);
 	                update();
 				}else if(!CredentialChecker.checkUsername(username)) {
@@ -148,15 +150,22 @@ public class Window {
 			return isLogin;
 		    }
 		});
-		containerPage.setBounds(0, 0,450,containerPage.getToolkit().getScreenSize().height);
 		formPage.setBounds(0, 0, 436, 683);
-		window.getContentPane().add(containerPage);
+		window.getContentPane().add(formPage);
 	}
 
 	public void update() {
-        window.getContentPane().repaint();
-        window.getContentPane().revalidate();
+		window.getContentPane().repaint();
+		window.getContentPane().revalidate();
 	}
+	public UserPage getContainerPage() {
+		return containerPage;
+	}
+
+	public void setContainerPage(UserPage containerPage) {
+		this.containerPage = containerPage;
+	}
+
 	public JFrame getFrame() {
 		return window;
 	}
