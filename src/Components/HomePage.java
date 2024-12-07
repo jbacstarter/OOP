@@ -12,6 +12,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
+
+import Classes.User;
+
 import java.awt.Cursor;
 
 import javax.swing.ImageIcon;
@@ -30,6 +33,7 @@ public class HomePage extends JPanel {
 	
 	public HomePage(UserPage userPage) {
 		this.userPage = userPage;
+		User user = userPage.getUser();
 		JPanel container = userPage.getContainer();
 		setBackground(Color.decode("#52b3e1"));
 		setLayout(null);
@@ -77,6 +81,7 @@ public class HomePage extends JPanel {
 				container.removeAll();
 				container.add(userPage.getStatPage());
 				userPage.getStatPage().showList();
+				user.getUserChart().updateChart(user.getAccount().getExpenses());
 				container.repaint();
 				container.revalidate();
 			}
