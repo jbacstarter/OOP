@@ -24,7 +24,8 @@ public class UserPage extends JPanel {
 	private JButton homeButton;
 	private JPanel container;
 	private HomePage homePage;
-	private JPanel transacPage;
+	private TransactionsPage transacPage;
+	private StatisticsPage statPage;
 	
 	/**
 	 * Create the panel.
@@ -56,13 +57,16 @@ public class UserPage extends JPanel {
 		add(container);
 		container.setLayout(null);
 		
+		statPage = new StatisticsPage(user);
+		statPage.setBounds(0, 0, 450, 619);
+		
 		transacPage = new TransactionsPage(user);
 		transacPage.setBounds(0, 0, 450, 619);
-		container.add(transacPage);
 		
 		homePage = new HomePage();
 		homePage.setBounds(0, 0, 450, 619);
-		//container.add();
+		container.add(statPage);
+		
 		onClick();
 	}
 
@@ -167,7 +171,7 @@ public class UserPage extends JPanel {
 
 
 
-	public JPanel getTransacPage() {
+	public TransactionsPage getTransacPage() {
 		return transacPage;
 	}
 
@@ -175,8 +179,30 @@ public class UserPage extends JPanel {
 
 
 
-	public void setTransacPage(JPanel transacPage) {
+	public void setTransacPage(TransactionsPage transacPage) {
 		this.transacPage = transacPage;
 	}
+
+
+
+
+
+	public StatisticsPage getStatPage() {
+		return statPage;
+	}
+
+
+
+
+
+	public void setStatPage(StatisticsPage statPage) {
+		this.statPage = statPage;
+	}
+
+
+
+
+
+
 
 }

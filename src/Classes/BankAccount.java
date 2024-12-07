@@ -35,7 +35,15 @@ public class BankAccount {
            }
 	}
 
-
+	public static double getTotal(JSONArray arr) {
+		double sum = 0;
+    	for(int col = 0;col < arr.length(); col++) {
+    		JSONObject obj = arr.getJSONObject(col);
+    		double value = obj.getDouble("value");
+    		sum+= value;
+    	}
+    	return sum;
+	}
 	public static double getSum(String type, JSONArray arr) {
 		double result = 0;
 		

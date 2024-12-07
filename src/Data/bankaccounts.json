@@ -29,6 +29,19 @@
   "expenses" : [ {
     "date" : "2/3/2023",
     "type" : "Food/Groceries",
-    "value" : 329
-  } ]
+    "value" : 3232.9
+  },
+  {
+      "date" : "2/3/2023",
+      "type" : "Apparel",
+      "value" : 5243.24
+    },{
+	    "date" : "2/3/2023",
+	    "type" : "Education",
+	    "value" : 45290.234
+	 },	{
+		   "date" : "2/3/2023",
+		    "type" : "Apparel",
+		    "value" : 60099.234
+		  }]
 } ]

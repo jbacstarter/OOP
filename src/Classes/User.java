@@ -16,6 +16,14 @@ public class User {
 		}
 	}
 
+	public PieChart getUserChart() {
+		return userChart;
+	}
+
+	public void setUserChart(PieChart userChart) {
+		this.userChart = userChart;
+	}
+
 	public String getUsername() {
 		return username;
 	}

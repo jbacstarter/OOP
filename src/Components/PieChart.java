@@ -39,8 +39,9 @@ public class PieChart extends JPanel{
     		chart = createChart(dataset, "Default Chart");
     	}
         chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(450, 270));
-        
+        chartPanel.setPreferredSize(new java.awt.Dimension(420, 200));
+        chartPanel.setBackground(Color.WHITE);
+        setBackground(Color.WHITE);
         add(chartPanel);
     }
     
@@ -80,12 +81,14 @@ public class PieChart extends JPanel{
         JFreeChart chart = ChartFactory.createPieChart3D(
             title,                  // chart title
             dataset,                // data
-            true,                     // include legend
+            false,                     // include legend
             true,
             false
         );
 
+        chart.setBackgroundPaint(new GradientPaint(0,0,Color.decode("#92acdf"),0,0,Color.decode("#92acdf")));
         PiePlot3D plot = (PiePlot3D) chart.getPlot();
+        plot.setBackgroundPaint(new GradientPaint(0,0,Color.decode("#92acdf"),0,0,Color.decode("#92acdf")));
         plot.setDirection(Rotation.CLOCKWISE);
         plot.setStartAngle(290);
         plot.setForegroundAlpha(0.5f);
