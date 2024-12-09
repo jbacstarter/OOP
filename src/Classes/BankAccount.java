@@ -6,18 +6,21 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Helpers.Data;
+import Helpers.ErrorHandler;
 
 public class BankAccount {
 
 	private JSONArray expenses = null;
+	private double budget = 0;
+	private double initialBudget = 0;
 	private File file = new File("src/Data/bankaccounts.json");
 	
 	public BankAccount(String user, String pass) {
-		getLists(user, pass);
+		getValues(user, pass);
 	}
 	
 	
-	private void getLists(String username, String password) {
+	private void getValues(String username, String password) {
 			 
 			JSONArray arr = Data.getData(file, null);
           
@@ -26,10 +29,12 @@ public class BankAccount {
         		   JSONObject obj =  arr.getJSONObject(i);
         		   String name = obj.getString("username");
         		   String pass = obj.getString("password");
-        		   if(name.contains(username) && pass.contains(password)) {
+        		   if(name.equals(username) && pass.equals(password)) {
         			   expenses = new JSONArray(obj.getJSONArray("expenses"));
+        			   budget = obj.getDouble("budget");
+        			   initialBudget = obj.getDouble("originalBudget");
         		   }else {
-        			   System.out.println("ACCOUNT NOT FOUND!");
+        			   System.err.println("Account not found!");
         		   }
         	   }
            }
@@ -51,7 +56,7 @@ public class BankAccount {
 			for(int i = 0 ; i < arr.length(); i++) {
 				JSONObject obj =  arr.getJSONObject(i);
 			String ty =	obj.getString("type");
-			if(ty.contains(type)) {
+			if(ty.equals(type)) {
 				result += obj.getDouble("value");
 			}
 			}
@@ -70,6 +75,26 @@ public class BankAccount {
 
 	public void setExpenses(JSONArray expenses) {
 		this.expenses = expenses;
+	}
+
+
+	public double getBudget() {
+		return budget;
+	}
+
+
+	public void setBudget(double budget) {
+		this.budget = budget;
+	}
+
+
+	public double getInitialBudget() {
+		return initialBudget;
+	}
+
+
+	public void setInitialBudget(double initialBudget) {
+		this.initialBudget = initialBudget;
 	}
 
 }

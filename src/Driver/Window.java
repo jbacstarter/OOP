@@ -64,7 +64,6 @@ public class Window {
 		window.setLocationRelativeTo(null);
 		window.getContentPane().setLayout(null);
 		formPage = new FormPage();
-		containerPage = new UserPage();
 		formPage.getLoginForm().getLoginButton().addActionListener(new ActionListener() {
 			private JProgressBar bar = new JProgressBar(0,100);
 			public void actionPerformed(ActionEvent e) {
@@ -119,7 +118,8 @@ public class Window {
 					}
 	                window.getContentPane().remove(bar);
 	                update();
-	                containerPage = new UserPage();
+	                formPage.clearFields();
+	                containerPage = new UserPage(getInstance());
 	                containerPage.setUser(new User(username, password));
 	                containerPage.initialize();
 	                window.getContentPane().add(containerPage);
@@ -129,7 +129,7 @@ public class Window {
 				}else if(!CredentialChecker.checkPassword(password)){
 					new ErrorHandler("\nPassword must contain:\nat least one lowercase letter;\nat least one uppercase letter;\nat least one digit;\nat least 8 characters long;", formPage);
 				}else {
-					new ErrorHandler("Account not found.", formPage);
+					new ErrorHandler("Invalid credentials", formPage);
 				}
 			}
 			
@@ -143,7 +143,7 @@ public class Window {
 			
 			for(int i =0 ; i < users.length(); i++) {
 				JSONObject user = users.getJSONObject(i);
-				if(username.contains(user.getString("username")) && password.contains(user.getString("password"))) {
+				if(username.equals(user.getString("username")) && password.equals(user.getString("password"))) {
 					isLogin = true;
 				}
 				}
@@ -154,6 +154,10 @@ public class Window {
 		window.getContentPane().add(formPage);
 	}
 
+	private Window getInstance() {
+		
+		return this;
+	}
 	public void update() {
 		window.getContentPane().repaint();
 		window.getContentPane().revalidate();

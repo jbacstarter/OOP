@@ -121,6 +121,8 @@ public class RegisterForm extends JPanel {
 						if(CredentialChecker.checkUsername(username) && CredentialChecker.checkPassword(password) && !checkDuplicate()) {
 							registerAccount();
 							createBankAccount();
+							passwordField.setText("");
+							usernameText.setText("");
 						}else if(!CredentialChecker.checkUsername(username)) {
 							new ErrorHandler("\nUsername must have:\na length of 4-25 characters;\nno whitespaces;", getParent());
 						}else if(!CredentialChecker.checkPassword(password)){
@@ -140,7 +142,7 @@ public class RegisterForm extends JPanel {
 				JSONArray arr = Data.getData(file, getParent());
 				for(int i = 0; i < arr.length(); i++) {
 					String fileUser = arr.getJSONObject(i).getString("username");
-					if(fileUser.contains(user)) {
+					if(fileUser.equals(user)) {
 						status = true;
 					}
 				}
@@ -174,6 +176,7 @@ public class RegisterForm extends JPanel {
 				obj.put("username", user);
 				obj.put("expenses", new JSONArray());
 				obj.put("budget", 0);
+				obj.put("originalBudget", 0);
 				
 				arr.put(obj);
 				

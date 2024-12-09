@@ -31,6 +31,7 @@ public class TransactionsPage extends JPanel {
 	private JPanel listsPanel;
 	private JButton addButton;
 	private JButton removeButton;
+	private AddTransactionForm addForm;
 	private User user =null;
 
 	public TransactionsPage(User user) {
@@ -68,6 +69,25 @@ public class TransactionsPage extends JPanel {
 		addButton = new JButton("+");
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				addForm = new AddTransactionForm(user);
+				Thread.startVirtualThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						while(addForm.isShowing()) {
+							System.out.print("");
+						}
+						System.out.print("");
+						if(addForm.checkAmount() && addForm.checkDate() && addForm.isValidAmount()) {
+							String strAmount =addForm.getAmountField().getText();
+							double amount = Double.parseDouble(strAmount);
+							String date = addForm.getDateField().getText();
+							String type =(String)addForm.getTypeComboBox().getSelectedItem();
+							Data.addExpense(user, type, date,amount);
+							showLists();
+						}
+					}
+				});
 			}
 		});
 		addButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -124,7 +144,7 @@ public class TransactionsPage extends JPanel {
 				card.index = i;
 				card.getDateLabel().setText("No transactions yet");
 				card.getType().setText(Expense.TYPES[new Random().nextInt(0, Expense.length)]);
-				card.getPaymentValue().setText("₱ " + new Random().nextInt(1000, 10000));
+				card.getPaymentValue().setText("₱ " + 0.0);
 				listsPanel.add(card);
 				listsPanel.repaint();
 				listsPanel.revalidate();
@@ -132,6 +152,9 @@ public class TransactionsPage extends JPanel {
 		}
 	}
 
+	private TransactionsPage getInstance() {
+		return this;
+	}
 	public JPanel getDesign1() {
 		return design1;
 	}

@@ -45,6 +45,13 @@ public class FormPage extends JPanel {
 		repaint();
 		revalidate();
 	}
+	
+	public void clearFields() {
+		loginForm.getPasswordField().setText("");
+		loginForm.getUsernameText().setText("");
+		registerForm.getPasswordField().setText("");
+		registerForm.getUsernameText().setText("");
+	}
 	public LoginForm getLoginForm() {
 		return loginForm;
 	}

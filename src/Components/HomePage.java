@@ -81,7 +81,13 @@ public class HomePage extends JPanel {
 				container.removeAll();
 				container.add(userPage.getStatPage());
 				userPage.getStatPage().showList();
-				user.getUserChart().updateChart(user.getAccount().getExpenses());
+				if(user.getAccount().getExpenses().length() >0) {
+					
+					user.getUserChart().updateChart(user.getAccount().getExpenses(), "Expenses");
+				}else {
+					user.getUserChart().updateChart(user.getAccount().getExpenses(), "(NO EXPENSES YET)");
+					
+				}
 				container.repaint();
 				container.revalidate();
 			}
@@ -101,6 +107,16 @@ public class HomePage extends JPanel {
 		appName.setBounds(131, 108, 191, 48);
 		add(appName);
 
+		budgetButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				container.removeAll();
+				userPage.getBudgetPage().initialize();
+				userPage.getBudgetPage().updateLabelPanel();
+				container.add(userPage.getBudgetPage());
+				container.repaint();
+				container.revalidate();
+			}
+		});
 	}
 	
 	@Override

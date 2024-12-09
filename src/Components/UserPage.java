@@ -1,11 +1,13 @@
 package Components;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
 import Classes.User;
+import Driver.Window;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -14,7 +16,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
-
 public class UserPage extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -26,11 +27,15 @@ public class UserPage extends JPanel {
 	private HomePage homePage;
 	private TransactionsPage transacPage;
 	private StatisticsPage statPage;
-	
+	private BudgetPage budgetPage;
+	private Window window;
 	/**
 	 * Create the panel.
 	 */
-	public UserPage() {
+	public UserPage(Window window) {
+		setLayout(null);
+		this.window = window;
+
 	}
 
 	
@@ -65,6 +70,9 @@ public class UserPage extends JPanel {
 		add(container);
 		container.setLayout(null);
 		if(user != null) {
+			budgetPage = new BudgetPage(user);
+			budgetPage.setBorder(null);
+			budgetPage.setBounds(0, 0, 450, 621);
 			
 			statPage = new StatisticsPage(user);
 			statPage.setBounds(0, 0, 450, 619);
@@ -84,6 +92,18 @@ public class UserPage extends JPanel {
 					container.add(homePage);
 					container.repaint();
 					container.revalidate();
+				}
+			});
+			logoutButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Container contentPane = window.getWindow().getContentPane();
+					contentPane.removeAll();
+					user = null;
+					contentPane.add(window.getFormPage());
+					contentPane.repaint();
+					contentPane.revalidate();
 				}
 			});
 			onClick();
@@ -217,6 +237,22 @@ public class UserPage extends JPanel {
 
 	public void setStatPage(StatisticsPage statPage) {
 		this.statPage = statPage;
+	}
+
+
+
+
+
+	public BudgetPage getBudgetPage() {
+		return budgetPage;
+	}
+
+
+
+
+
+	public void setBudgetPage(BudgetPage budgetPage) {
+		this.budgetPage = budgetPage;
 	}
 
 

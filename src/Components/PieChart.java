@@ -45,10 +45,10 @@ public class PieChart extends JPanel{
         add(chartPanel);
     }
     
-    public void updateChart(JSONArray arr) {
+    public void updateChart(JSONArray arr, String newTitle) {
         if (arr != null && arr.length() > 0) {
             this.dataset = createDataset(arr);
-            this.chart = createChart(dataset, this.chart.getTitle().getText());
+            this.chart = createChart(dataset, newTitle);
             this.chartPanel.setChart(this.chart);
             this.chartPanel.repaint();
         }
@@ -59,6 +59,7 @@ public class PieChart extends JPanel{
     private  PieDataset createDataset(JSONArray arr) {
         DefaultPieDataset result = new DefaultPieDataset();
         if(arr != null) {
+        
         	for(int col = 0;col <Expense.length; col++) {
         		double value = BankAccount.getSum(Expense.TYPES[col], arr);
         		result.setValue(Expense.TYPES[col], value);
