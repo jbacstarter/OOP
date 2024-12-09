@@ -56,6 +56,7 @@ public class UserPage extends JPanel {
 		homeButton = new NavButton("");
 		homeButton.setIcon(new ImageIcon(UserPage.class.getResource("/Resources/home (1).png")));
 		NavPanel.add(homeButton);
+		homeButton.setBorderPainted(true);
 		
 		logoutButton = new NavButton("");
 		logoutButton.setIcon(new ImageIcon(UserPage.class.getResource("/Resources/logout (2).png")));

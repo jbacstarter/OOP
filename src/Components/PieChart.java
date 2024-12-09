@@ -35,8 +35,8 @@ public class PieChart extends JPanel{
     		dataset = createDataset( arr);
     		chart = createChart(dataset, chartTitle);
     	}else {
-    		dataset= createDataset( null);
-    		chart = createChart(dataset, "Default Chart");
+    		dataset= createDataset(null);
+    		chart = createChart(dataset, "(NO EXPENSES YET)");
     	}
         chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new java.awt.Dimension(420, 200));
@@ -46,25 +46,23 @@ public class PieChart extends JPanel{
     }
     
     public void updateChart(JSONArray arr, String newTitle) {
-        if (arr != null && arr.length() > 0) {
             this.dataset = createDataset(arr);
             this.chart = createChart(dataset, newTitle);
             this.chartPanel.setChart(this.chart);
             this.chartPanel.repaint();
-        }
     }
     /**
      * Creates a sample dataset 
      */
     private  PieDataset createDataset(JSONArray arr) {
         DefaultPieDataset result = new DefaultPieDataset();
-        if(arr != null) {
+        if( arr != null && arr.length()>0) {
         
         	for(int col = 0;col <Expense.length; col++) {
         		double value = BankAccount.getSum(Expense.TYPES[col], arr);
         		result.setValue(Expense.TYPES[col], value);
         	}
-        }else if((arr == null|| arr.length()== 0)) {
+        }else if(arr == null) {
         	result.setValue("Window", 245);
         	result.setValue("Linux", 89);
         	result.setValue("Samsung", 482);

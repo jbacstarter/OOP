@@ -81,11 +81,11 @@ public class HomePage extends JPanel {
 				container.removeAll();
 				container.add(userPage.getStatPage());
 				userPage.getStatPage().showList();
-				if(user.getAccount().getExpenses().length() >0) {
+				if(user.getAccount().getExpenses().length() > 0) {
 					
 					user.getUserChart().updateChart(user.getAccount().getExpenses(), "Expenses");
 				}else {
-					user.getUserChart().updateChart(user.getAccount().getExpenses(), "(NO EXPENSES YET)");
+					user.getUserChart().updateChart(null, "(NO EXPENSES YET)");
 					
 				}
 				container.repaint();
