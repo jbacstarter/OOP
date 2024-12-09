@@ -20,6 +20,6 @@ public class Draw {
 
 
 
-	private static URL logo = Draw.class.getResource("/Resources/appLogo.png");
+	private static URL logo = Draw.class.getResource("/Resources/appLogo (1).png");
 
 }

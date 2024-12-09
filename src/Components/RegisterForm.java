@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import Helpers.CredentialChecker;
 import Helpers.Data;
+import Helpers.Draw;
 import Helpers.ErrorHandler;
 
 import javax.swing.JFormattedTextField;
@@ -34,6 +35,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.LineBorder;
 
 public class RegisterForm extends JPanel {
 
@@ -46,45 +48,52 @@ public class RegisterForm extends JPanel {
 	private JLabel returnLabel;
 	private JButton registerButton;
 	
-	private String color1 = "#FFFFFF";
-	private String color2 = "#FFFFFF";
+	private String color1 = "#2b378b"; 
+	private String color2 = "#2d4360";
+	private JLabel appName;
 	/**
 	 * Create the panel.
 	 */
 	public RegisterForm() {
-		setBackground(Color.WHITE);
+		setBackground(Color.decode("#52b3e1"));
 		setLayout(null);
 		setPreferredSize(new Dimension(450, getToolkit().getScreenSize().height));
 		
-		register = new JLabel("Register");
-		register.setBounds(78, 158, 185, 63);
-		register.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 54));
+		register = new JLabel("Register an account");
+		register.setForeground(Color.WHITE);
+		register.setBackground(Color.WHITE);
+		register.setBounds(77, 175, 324, 63);
+		register.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 34));
 		add(register);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(78, 388, 283, 34);
+		passwordField.setBounds(20, 403, 405, 63);
 		add(passwordField);
 		
 		passwordLabel = new JLabel("Password");
-		passwordLabel.setBounds(78, 351, 81, 24);
-		passwordLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		passwordLabel.setForeground(Color.WHITE);
+		passwordLabel.setBounds(20, 372, 134, 24);
+		passwordLabel.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		add(passwordLabel);
 		
 		usernameText = new JFormattedTextField();
-		usernameText.setBounds(78, 306, 283, 34);
+		usernameText.setBorder(null);
+		usernameText.setBounds(20, 298, 405, 63);
 		usernameText.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		add(usernameText);
-		usernameLabel = new JLabel("Username");
-		usernameLabel.setBounds(78, 271, 84, 24);
-		usernameLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		usernameLabel = new JLabel("Name");
+		usernameLabel.setForeground(Color.WHITE);
+		usernameLabel.setBounds(20, 263, 84, 24);
+		usernameLabel.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		add(usernameLabel);
 		
-		returnLabel = new JLabel("return to login");
+		returnLabel = new JLabel("Sign-In");
+		returnLabel.setForeground(new Color(65, 105, 225));
 		returnLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				returnLabel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-				returnLabel.setForeground(Color.BLACK);
+				returnLabel.setForeground(new Color(65, 105, 225));
 			}
 		});
 		returnLabel.addMouseMotionListener(new MouseMotionAdapter() {
@@ -94,11 +103,11 @@ public class RegisterForm extends JPanel {
 				returnLabel.setForeground(Color.BLUE);
 			}
 		});
-		returnLabel.setBounds(78, 436, 128, 17);
-		returnLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		returnLabel.setBounds(335, 586, 90, 30);
+		returnLabel.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		add(returnLabel);
 		
-		registerButton = new JButton("Register") {
+		registerButton = new JButton("SIGN-UP") {
 			protected void paintComponent(Graphics g) {
 				int w = registerButton.getWidth();
 				int h = registerButton.getHeight();
@@ -109,6 +118,7 @@ public class RegisterForm extends JPanel {
 				super.paintComponent(g);
 			}
 		};
+		registerButton.setForeground(Color.BLACK);
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Thread.startVirtualThread(new Runnable() {
@@ -254,8 +264,8 @@ public class RegisterForm extends JPanel {
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				registerButton.setForeground(Color.WHITE);
-				color1 = "#892643"; 
-				color2 = "#e98faa";
+				color2 = "#92acdf"; 
+				color1 = "#cedaf0";
 				registerButton.repaint();
 				registerButton.revalidate();
 			}
@@ -264,20 +274,34 @@ public class RegisterForm extends JPanel {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				registerButton.setForeground(Color.BLACK);
-				color1 = "#FFFFFF";
-				color2 = "#FFFFFF"; 
+				color1 = "#2b378b"; 
+				color2 = "#2d4360";
 				registerButton.repaint();
 				registerButton.revalidate();
 			}
 		});
-		registerButton.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 24));
+		registerButton.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
 		registerButton.setFocusPainted(false);
 		registerButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		registerButton.setContentAreaFilled(false);
 		registerButton.setBorder(null);
-		registerButton.setBounds(255, 494, 106, 40);
+		registerButton.setBounds(20, 512, 405, 63);
 		add(registerButton);
+		
+		appName = new JLabel("Bantay Budget");
+		appName.setForeground(Color.WHITE);
+		appName.setFont(new Font("Dialog", Font.PLAIN, 28));
+		appName.setBounds(134, 104, 191, 48);
+		add(appName);
 
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D)g;
+		int w = getWidth(), h = getHeight();
+		g2.drawImage(Draw.getLogo(), (w/3)+20, 20, 100, 100, null);
 	}
 
 	public JLabel getRegister() {
