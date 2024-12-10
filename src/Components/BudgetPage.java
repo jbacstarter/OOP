@@ -19,6 +19,7 @@ import java.awt.Cursor;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.MatteBorder;
 
 public class BudgetPage extends JPanel {
 
@@ -53,6 +54,7 @@ public class BudgetPage extends JPanel {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		design1 = new JPanel();
+		design1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
 		design1.setLayout(null);
 		design1.setBackground(new Color(82, 179, 225));
 		design1.setBounds(0, 0, 451, 88);
@@ -116,7 +118,7 @@ public class BudgetPage extends JPanel {
 		
 		labelPanel = new JPanel();
 		labelPanel.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		labelPanel.setBackground(new Color(249, 231, 159));
+		labelPanel.setBackground(Color.decode("#f7dc6f"));
 		labelPanel.setBounds(10, 397, 411, 209);
 		add(labelPanel);
 		labelPanel.setLayout(null);

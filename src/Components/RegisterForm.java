@@ -67,6 +67,7 @@ public class RegisterForm extends JPanel {
 		add(register);
 		
 		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Dialog", Font.BOLD, 30));
 		passwordField.setBounds(20, 403, 405, 63);
 		add(passwordField);
 		
@@ -79,7 +80,7 @@ public class RegisterForm extends JPanel {
 		usernameText = new JFormattedTextField();
 		usernameText.setBorder(null);
 		usernameText.setBounds(20, 298, 405, 63);
-		usernameText.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		usernameText.setFont(new Font("Dialog", Font.BOLD, 30));
 		add(usernameText);
 		usernameLabel = new JLabel("Name");
 		usernameLabel.setForeground(Color.WHITE);

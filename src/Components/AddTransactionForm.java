@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,7 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 
-public class AddTransactionForm extends JFrame {
+public class AddTransactionForm extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	 private JPanel mainPanel;
@@ -50,7 +51,8 @@ public class AddTransactionForm extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
-  
+        setModal(true);
+        setModalityType(ModalityType.APPLICATION_MODAL);
       
         mainPanel = new JPanel();
         mainPanel.setLayout(null);

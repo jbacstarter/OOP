@@ -15,12 +15,17 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.Cursor;
+import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 
 public class TransactionsPage extends JPanel {
 
@@ -35,12 +40,14 @@ public class TransactionsPage extends JPanel {
 	private User user =null;
 
 	public TransactionsPage(User user) {
+		setBorder(null);
 		this.user = user;
 		
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
 		design1 = new JPanel();
+		design1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
 		design1.setBackground(Color.decode("#52b3e1"));
 		design1.setBounds(0, 0, 451, 103);
 		add(design1);
@@ -62,6 +69,7 @@ public class TransactionsPage extends JPanel {
 		add(scrollPanel);
 		
 		listsPanel = new JPanel();
+		
 		listsPanel.setBackground(Color.WHITE);
 		listsPanel.setLayout(new WrapLayout(WrapLayout.CENTER, 0,20));
 		scrollPanel.setViewportView(listsPanel);

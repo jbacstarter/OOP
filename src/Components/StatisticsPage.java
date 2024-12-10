@@ -15,6 +15,7 @@ import java.util.Random;
 
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.border.MatteBorder;
 
 public class StatisticsPage extends JPanel {
 
@@ -45,6 +46,7 @@ public class StatisticsPage extends JPanel {
 		PiePanel.add(user.getUserChart());
 		
 		design1 = new JPanel();
+		design1.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 0, 0)));
 		design1.setLayout(null);
 		design1.setBackground(new Color(82, 179, 225));
 		design1.setBounds(0, 1, 451, 103);
